@@ -1,0 +1,59 @@
+-----------------------------------------------------------------------------------------------------------
+员工端
+
+0）判断是否存在开屏通知
+http://localhost:8271/wms_app_c/work/noticeScreen.do?method=judgeNoticeScreen
+请求参数
+custId:CN000000119915  //客户id
+noticeScreenOffset:3  //偏移量
+
+1）开屏通知列表
+http://172.30.197.21:9229/wms_appcm_c/work/noticeScreen.do?method=getNoticeScreen
+请求参数:
+userId:009055
+noticeScreenOffset:3  //偏移量
+
+返回参数：
+"noticeType": "2",  // 0图片 1文本 2文本+链接
+"popFreq": "1",   // 0仅弹一次 1非关闭操作后不再弹出
+"noticeContent": "12345", //文本内容
+picServerUrl": null,  //图片url路径
+"fileServerUrl":    //链接附件的url 和 是否需要签署协议
+"receiveId": "USERR501727570001344833" //开屏通知唯一标识
+
+2）签署协议或已知晓
+http://172.30.197.21:9229/wms_appcm_c/work/noticeScreen.do?method=updateNoticeScreenCustSign
+请求参数
+receiveId:USERR46298688523303728
+
+3)获取签署协议的列表
+http://172.30.197.21:9229/wms_appcm_c/work/noticeScreen.do?method=getFileRecordList
+请求参数
+businessId:000814  //员工的ID
+clientFileName  //文件名称
+sort：    //排序规则 1.按时间倒序，0，按时间正序
+-----------------------------------------------------------------------------------------------------------
+客户端
+0）判断是否存在开屏通知
+http://localhost:8271/wms_app_c/work/noticeScreen.do?method=judgeNoticeScreen
+请求参数
+userId:CN000000119915  //用户id
+noticeScreenOffset:3  //偏移量
+
+
+1）开屏通知列表
+http://172.30.197.26:9239/wms_app_c/work/noticeScreen.do?method=getNoticeScreen
+请求参数:
+userId:009055
+返回参数：
+"noticeType": "2",  // 0图片 1文本 2文本+链接
+"popFreq": "1",   // 0仅弹一次 1非关闭操作后不再弹出
+"noticeContent": "12345", //文本内容
+picServerUrl": null,  //图片url路径
+"fileServerUrl":    //链接附件的url 和 是否需要签署协议
+"receiveId": "USERR501727570001344833" //开屏通知唯一标识
+
+2）签署协议或已知晓
+http://localhost:8271/wms_app_c/work/noticeScreen.do?method=updateNoticeScreenCustSign
+请求参数
+receiveId:USERR46298688523303728
